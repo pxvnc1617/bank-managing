@@ -33,6 +33,11 @@ public class SecurityConfig {
         http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         http.formLogin(formLogin -> formLogin.disable());
         http.httpBasic(httpBasic -> httpBasic.disable());
+        // exception 가로채기
+        http.exceptionHandling(exceptionHandling -> exceptionHandling.authenticationEntryPoint((request, response, authException) -> {
+            response.setStatus(403);
+            response.getWriter().println("error");
+        }));
         http.authorizeHttpRequests(authorizeHttpRequests ->
                 authorizeHttpRequests
                         .requestMatchers("/api/s/**").authenticated()
