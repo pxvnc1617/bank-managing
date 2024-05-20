@@ -1,6 +1,9 @@
 package com.example.bank_coding.config;
 
 import com.example.bank_coding.domain.user.UserRole;
+import com.example.bank_coding.dto.ResponseDto;
+import com.example.bank_coding.util.CustomResponseUtil;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,8 +38,11 @@ public class SecurityConfig {
         http.httpBasic(httpBasic -> httpBasic.disable());
         // exception 가로채기
         http.exceptionHandling(exceptionHandling -> exceptionHandling.authenticationEntryPoint((request, response, authException) -> {
-            response.setStatus(403);
-            response.getWriter().println("error");
+            try {
+                CustomResponseUtil.unAuthentication(response, "로그인을 진행해 주세요.");
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }));
         http.authorizeHttpRequests(authorizeHttpRequests ->
                 authorizeHttpRequests
