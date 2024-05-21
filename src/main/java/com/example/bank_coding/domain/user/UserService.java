@@ -1,9 +1,9 @@
 package com.example.bank_coding.domain.user;
 
+import com.example.bank_coding.dto.user.request.JoinRequestDto;
+import com.example.bank_coding.dto.user.response.JoinResponseDto;
 import com.example.bank_coding.exceptionHandler.ex.CustomApiException;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import org.slf4j.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -29,38 +29,5 @@ public class UserService {
 
         // 3. dto 응답
         return new JoinResponseDto(userPersistence);
-    }
-
-    @Getter
-    @Setter
-    public static class JoinRequestDto {
-        private String username;
-        private String password;
-        private String email;
-        private String fullName;
-
-        public User toEntity(BCryptPasswordEncoder bCryptPasswordEncoder) {
-            return User.builder()
-                    .username(username)
-                    .password(bCryptPasswordEncoder.encode(password))
-                    .email(email)
-                    .fullName(fullName)
-                    .role(UserRole.USER)
-                    .build();
-        }
-    }
-
-    @Getter
-    @Setter
-    public static class JoinResponseDto {
-        private Long id;
-        private String username;
-        private String fullName;
-
-        public JoinResponseDto(User user) {
-            this.id = user.getId();
-            this.username = user.getUsername();
-            this.fullName = user.getFullName();
-        }
     }
 }
