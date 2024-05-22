@@ -30,4 +30,6 @@ public class JoinRequestDto {
                 .role(UserRole.USER)
                 .build();
     }
+
+    // 여기는 T 이다!
 }
