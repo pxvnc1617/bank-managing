@@ -32,4 +32,6 @@ public class JoinRequestDto {
                 .role(UserRole.USER)
                 .build();
     }
+
+    // f 브랜치에서 dto 생성
 }
