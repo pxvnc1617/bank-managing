@@ -19,6 +19,8 @@ public class JoinRequestDto {
     @NotEmpty
     private String fullName;
 
+    // 여기는 f 브랜치입니다요ㅎㅎ
+
     public User toEntity(BCryptPasswordEncoder bCryptPasswordEncoder) {
         return User.builder()
                 .username(username)
