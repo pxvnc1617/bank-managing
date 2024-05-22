@@ -21,6 +21,8 @@ public class JoinRequestDto {
 
     // 여기는 f 브랜치입니다요ㅎㅎ
 
+    // 안녕하세요 여기는 t 브랜치 입니다.
+
     public User toEntity(BCryptPasswordEncoder bCryptPasswordEncoder) {
         return User.builder()
                 .username(username)
