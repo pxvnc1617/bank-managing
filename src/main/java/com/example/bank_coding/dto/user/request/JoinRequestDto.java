@@ -19,6 +19,8 @@ public class JoinRequestDto {
     @NotEmpty
     private String fullName;
 
+    // 여기는 f 브랜치입니다요ㅎㅎ
+
     // 안녕하세요 여기는 t 브랜치 입니다.
 
     public User toEntity(BCryptPasswordEncoder bCryptPasswordEncoder) {
@@ -31,5 +33,9 @@ public class JoinRequestDto {
                 .build();
     }
 
+
     // 여기는 T 이다!
+
+    // f 브랜치에서 dto 생성
+
 }
