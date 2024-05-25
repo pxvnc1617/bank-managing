@@ -16,15 +16,15 @@ public class CustomExceptionHandler {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @ExceptionHandler(CustomApiException.class)
-    public ResponseEntity<?> validationApiException(CustomApiException customApiException) {
-        logger.error(customApiException.getMessage());
-        return new ResponseEntity<>(new ResponseDto<>(-1, customApiException.getMessage(), customApiException.getMessage()), HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler(CustomApiException.class)
     public ResponseEntity<?> apiException(CustomApiException customApiException) {
         logger.error(customApiException.getMessage());
-        return new ResponseEntity<>(new ResponseDto<>(-1, customApiException.getMessage(), customApiException), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new ResponseDto<>(-1, customApiException.getMessage(), null), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(CustomValidationException.class)
+    public ResponseEntity<?> validationApiException(CustomValidationException customValidationException) {
+        logger.error(customValidationException.getMessage());
+        return new ResponseEntity<>(new ResponseDto<>(-1, customValidationException.getMessage(), customValidationException.getErrorMap()), HttpStatus.BAD_REQUEST);
     }
 
 }

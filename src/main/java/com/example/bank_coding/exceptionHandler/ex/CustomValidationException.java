@@ -1,7 +1,10 @@
 package com.example.bank_coding.exceptionHandler.ex;
 
+import lombok.Getter;
+
 import java.util.Map;
 
+@Getter
 public class CustomValidationException extends RuntimeException {
 
     private Map<String, String> errorMap;

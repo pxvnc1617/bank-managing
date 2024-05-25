@@ -30,16 +30,6 @@ public class UserController {
     // 따라서 json 형식으로 데이터를 받아오고자 한다면 RequestBody 사용해야 한다.
     public ResponseEntity<?> join(@RequestBody @Valid JoinRequestDto joinRequestDto, BindingResult bindingResult) {
 
-        if (bindingResult.hasErrors()) {
-            Map<String, String> errorMap = new HashMap<>();
-
-            for (FieldError error : bindingResult.getFieldErrors()) {
-                errorMap.put(error.getField(), error.getDefaultMessage());
-            }
-
-            return new ResponseEntity<>(new ResponseDto<>(-1, "유효성 검사 실패", errorMap), HttpStatus.BAD_REQUEST);
-        }
-
         JoinResponseDto joinResponseDto = userService.join(joinRequestDto);
         return new ResponseEntity<>(new ResponseDto(1, "회원가입 성공", joinResponseDto), HttpStatus.CREATED);
     }
